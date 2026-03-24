@@ -1,0 +1,22 @@
+package com.example.kmpgameproject
+
+import android.app.Application
+import com.example.kmpgameproject.di.initKoin
+import org.koin.dsl.module
+
+class BaseApplication: Application() {
+    override fun onCreate() {
+        super.onCreate()
+        initKoin {
+            it.modules(
+                module {
+                    single {
+                        this@BaseApplication.applicationContext
+                    }
+                }
+            )
+        }
+    }
+
+
+}
