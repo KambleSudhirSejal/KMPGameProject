@@ -11,7 +11,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
@@ -21,10 +23,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -36,6 +40,7 @@ import org.koin.compose.viewmodel.koinViewModel
 fun GameScreenUi(
     modifier: Modifier,
     onFavouriteClick:()->Unit,
+    onSearchClick:()->Unit
 
 
 ) {
@@ -46,7 +51,8 @@ fun GameScreenUi(
     GameScreenContent(
         modifier = modifier.fillMaxSize(),
         uiState = uiState.value,
-        onFavouriteClick = onFavouriteClick
+        onFavouriteClick = onFavouriteClick,
+        onSearchClick= onSearchClick
     )
 
 }
@@ -56,7 +62,8 @@ fun GameScreenUi(
 @Composable
 fun GameScreenContent(modifier:Modifier = Modifier,
                       uiState: GameScreen.UiState,
-                      onFavouriteClick:()->Unit){
+                      onFavouriteClick:()->Unit,
+                      onSearchClick: () -> Unit){
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -66,14 +73,22 @@ fun GameScreenContent(modifier:Modifier = Modifier,
                     Text("GameLibrary")
                 },
                 actions={
+
+                    IconButton(onClick = {onSearchClick}){
+                        Icon(imageVector = Icons.Default.Search,
+                            contentDescription = null)
+
+                    }
+
                     IconButton(onClick = {onFavouriteClick}){
                         Icon(imageVector = Icons.Filled.Favorite ,
                             contentDescription = null)
                     }
 
 
-                }
+                },
 
+             colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
 
             )
         }
@@ -102,20 +117,22 @@ fun GameScreenContent(modifier:Modifier = Modifier,
         uiState.data?.let{data->
             LazyColumn(modifier = modifier.fillMaxSize()) {
                 items(data){
-                    Card(modifier=Modifier.padding(8.dp),
-                        shape = RoundedCornerShape(12.dp)){
+                    Card(modifier=Modifier.padding(12.dp).fillMaxWidth().height(350.dp),
+                        shape = RoundedCornerShape(12.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.White)){
 
                         Box(Modifier.fillMaxSize()){
                             AsyncImage(
                                 model = it.imageUrl,
                                 contentDescription = null,
-                                modifier = Modifier.fillMaxWidth().height(350.dp)
+                                modifier = Modifier.fillMaxWidth().height(350.dp),
+                                contentScale = ContentScale.Crop
                             )
 
-                            Box(modifier = Modifier.padding(horizontal = 12.dp)
+                            Box(modifier = Modifier.padding(horizontal = 12.dp, vertical = 12.dp)
                                 .background(color= Color.White,
                                     shape = RoundedCornerShape(12.dp)
-                                ),
+                                ).fillMaxWidth().align(Alignment.BottomCenter),
 
                                 ){
                                 Text(it.name,

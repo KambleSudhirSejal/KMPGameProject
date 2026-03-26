@@ -1,8 +1,9 @@
 package com.example.game.data.repository
 
+import com.example.common.data.mappers.toDomainDetails
 import com.example.coreNetwork.ApiService.ApiService
-import com.example.game.data.mappers.toDomainDetails
-import com.example.game.domain.model.Game
+import com.example.common.domain.model.Game
+
 import com.example.game.domain.repository.GameRepository
 
 class GameRepositoryImpl(private val apiService: ApiService): GameRepository {

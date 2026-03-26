@@ -46,11 +46,9 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-            implementation(projects.coreNetwork)
             implementation(projects.common.domain)
-            implementation(projects.common.data)
+            implementation(projects.coreNetwork)
 
-            implementation(projects.game.domain)
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
@@ -73,7 +71,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.example.game.data"
+    namespace = "com.example.common.data"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -108,7 +106,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.example.game.data"
+            packageName = "com.example.common.data"
             packageVersion = "1.0.0"
         }
     }

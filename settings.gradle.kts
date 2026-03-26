@@ -38,3 +38,11 @@ include(":coreNetwork")
 include(":game:data")
 include(":game:domain")
 include(":game:ui")
+
+include(":search:data")
+include(":search:domain")
+include(":search:ui")
+
+include(":common:data")
+include(":common:domain")
+include(":common:ui")

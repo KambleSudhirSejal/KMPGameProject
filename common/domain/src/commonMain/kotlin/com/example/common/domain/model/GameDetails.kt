@@ -1,4 +1,4 @@
-package com.example.game.domain.model
+package com.example.common.domain.model
 
 import kotlinx.serialization.Serializable
 

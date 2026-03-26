@@ -1,6 +1,6 @@
 package com.example.game.domain.repository
 
-import com.example.game.domain.model.Game
+import com.example.common.domain.model.Game
 
 interface GameRepository {
 

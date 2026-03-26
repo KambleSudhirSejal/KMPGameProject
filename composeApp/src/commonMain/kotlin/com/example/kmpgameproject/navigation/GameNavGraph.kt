@@ -30,7 +30,9 @@ object GameNavGraph: BaseNavGraph {
             composable(route = Dest.Game.route){
                 GameScreenUi(
                     modifier = modifier.fillMaxSize(),
-                    onFavouriteClick = {}
+                    onFavouriteClick = {},
+                    onSearchClick = {}
+
                 )
 
             }
