@@ -1,6 +1,7 @@
 package com.example.game.ui.game
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -40,7 +41,8 @@ import org.koin.compose.viewmodel.koinViewModel
 fun GameScreenUi(
     modifier: Modifier,
     onFavouriteClick:()->Unit,
-    onSearchClick:()->Unit
+    onSearchClick:()->Unit,
+    onClick:(Int)->Unit
 
 
 ) {
@@ -52,7 +54,8 @@ fun GameScreenUi(
         modifier = modifier.fillMaxSize(),
         uiState = uiState.value,
         onFavouriteClick = onFavouriteClick,
-        onSearchClick= onSearchClick
+        onSearchClick= onSearchClick,
+        onClick=onClick
     )
 
 }
@@ -63,7 +66,8 @@ fun GameScreenUi(
 fun GameScreenContent(modifier:Modifier = Modifier,
                       uiState: GameScreen.UiState,
                       onFavouriteClick:()->Unit,
-                      onSearchClick: () -> Unit){
+                      onSearchClick: () -> Unit,
+                      onClick:(Int)->Unit){
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -74,7 +78,7 @@ fun GameScreenContent(modifier:Modifier = Modifier,
                 },
                 actions={
 
-                    IconButton(onClick = {onSearchClick}){
+                    IconButton(onClick = {onSearchClick()}){
                         Icon(imageVector = Icons.Default.Search,
                             contentDescription = null)
 
@@ -117,7 +121,8 @@ fun GameScreenContent(modifier:Modifier = Modifier,
         uiState.data?.let{data->
             LazyColumn(modifier = modifier.fillMaxSize()) {
                 items(data){
-                    Card(modifier=Modifier.padding(12.dp).fillMaxWidth().height(350.dp),
+                    Card(modifier=Modifier.padding(12.dp).fillMaxWidth().height(350.dp)
+                        .clickable{ onClick(it.id)},
                         shape = RoundedCornerShape(12.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.White)){
 

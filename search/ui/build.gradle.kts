@@ -47,6 +47,9 @@ kotlin {
         }
         commonMain.dependencies {
 
+            implementation(projects.common.data)
+            implementation(projects.common.domain)
+            implementation(projects.search.domain)
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
@@ -57,6 +60,10 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
             implementation(libs.koin.core)
+            implementation(libs.koin.compose.viewmodel)
+
+             implementation(libs.coil)
+            implementation(libs.coil.ktor)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

@@ -54,6 +54,11 @@ kotlin {
             implementation(projects.game.data)
             implementation(projects.game.domain)
             implementation(projects.game.ui)
+
+            implementation(projects.search.ui)
+            implementation(projects.search.data)
+            implementation(projects.search.domain)
+
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)

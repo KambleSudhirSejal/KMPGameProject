@@ -1,6 +1,8 @@
 package com.example.coreNetwork.ApiService
 
-import com.example.coreNetwork.model.game.GameResponse
+import com.example.coreNetwork.model.game.game.GameResponse
+
+import gaur.himanshu.coreNetwork.model.gameDetails.GameDetailsResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -44,13 +46,13 @@ class ApiService(val httpClient : HttpClient) {
         }
     }
 
-    suspend fun getDetails(id: Int): Result<GameResponse> {
+    suspend fun getDetails(id: Int): Result<GameDetailsResponse> {
         return try {
             val response = httpClient.get("api/games/${id}") {
                 url {
                     parameter("key", "a646469a2fff4451963bafa6622ebd75")
                 }
-            }.body<GameResponse>()
+            }.body<GameDetailsResponse>()
             Result.success(response)
         } catch (e: Exception) {
             Result.failure(e)

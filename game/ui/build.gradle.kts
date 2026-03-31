@@ -46,7 +46,8 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-
+            implementation(projects.common.domain)
+            implementation(projects.common.data)
             implementation(projects.game.domain)
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)

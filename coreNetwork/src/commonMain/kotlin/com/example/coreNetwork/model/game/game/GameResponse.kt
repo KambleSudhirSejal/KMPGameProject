@@ -1,4 +1,4 @@
-package com.example.coreNetwork.model.game
+package com.example.coreNetwork.model.game.game
 
 import kotlinx.serialization.Serializable
 
@@ -7,4 +7,4 @@ data class GameResponse(
 
     val results: List<Result>,
 
-)
+    )

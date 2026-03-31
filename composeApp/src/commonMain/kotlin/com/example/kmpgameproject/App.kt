@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.kmpgameproject.navigation.GameNavGraph
+import com.example.kmpgameproject.navigation.SearchNavGraph
 import org.jetbrains.compose.resources.painterResource
 
 import kmpgameproject.composeapp.generated.resources.Res
@@ -37,7 +38,8 @@ fun App() {
             navHostController, startDestination = GameNavGraph.Dest.Root.route
         ){
             listOf(
-                GameNavGraph
+                GameNavGraph,
+                SearchNavGraph
             ).forEach {
                 it.build(
                     modifier = Modifier.padding(top = bottomPadding).fillMaxSize(),
